@@ -40,7 +40,7 @@ def login():
     traduzir = Translator(from_lang="English", to_lang="Portuguese")
     if formLogin.validate_on_submit():
         usuario = Usuario.query.filter_by(email=formLogin.email.data).first()
-        if usuario and bcrypt.check_password_hash(usuario.senha, formLogin.senha.data):
+        if usuario and bcrypt.check_password_hash(usuario.senha, formLogin.senha.data).decode("utf-8"):
             login_user(usuario, remember=formLogin.lembrar_dados.data)
             flash(f'Acesso concedido! Bem vindo {usuario.username}', 'alert-success')
             par_next = request.args.get('next')
