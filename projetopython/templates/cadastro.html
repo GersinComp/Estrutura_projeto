@@ -1,0 +1,50 @@
+{% extends 'estrutura.html' %}
+
+{% block body %}
+    <div class="row centralizar p-4 mt-5">
+        <div class="col">
+            <h1 class="centralizar">Cadastrar</h1>
+            <form method="POST" action="" class="border mt-3" >
+                {{ formCadastro.csrf_token }}
+                <legend>Cadastro de produtos</legend>
+                <fieldset>
+                    <div class="form-group">
+                        {{ formCadastro.nome_funcionario.label(class="form-control-label") }}
+                        {{ formCadastro.nome_funcionario(class="form-control") }}
+                    </div>
+
+                    <div class="form-group">
+
+                    </div>
+                </fieldset>
+                <div class="form-group centralizar mt-2">
+                    {{ formCadastro.botao_cadastrar_producao(class="btn btn-outline-primary") }}
+                </div>
+            </form>
+        </div>
+
+        <div class="col">
+            <h1 class="centralizar">Consultar</h1>
+            <form method="POST" action="" class="border mt-3" >
+                {{ formConsulta.csrf_token }}
+                <legend>Consultar</legend>
+                <fieldset>
+                    <div class="form-group">
+                        {{ formConsulta.produto.label(class="form-control-label") }}
+                        {{ formConsulta.produto(class="form-control") }}
+                    </div>
+                    <div class="form-group">
+
+                    </div>
+                </fieldset>
+                <div class="form-group centralizar mt-2">
+                    {{ formConsulta.botao_buscar_produto(class="btn btn-outline-primary") }}
+                </div>
+            </form>
+        </div>
+
+        <div class="container p-4 mt-5">
+            {% include 'tabela.html' %}
+        </div>
+    </div>
+{% endblock %}

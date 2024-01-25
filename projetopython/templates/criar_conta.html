@@ -1,0 +1,93 @@
+{% extends 'estrutura.html' %}
+
+{% block body %}
+<div class="container centralizar">
+    <form method="POST" action="" class="border m-5 p-5 w-25 p-3 shadow p-3 mb-5 bg-body rounded" >
+        {{ formCriarConta.csrf_token }}
+        <legend class="centralizar">Criar Conta</legend>
+            <fieldset>
+                <div class="form-group">
+                    {{ formCriarConta.username.label(class="form-control-label") }}
+
+                    {% if formCriarConta.username.errors %}
+                        {{ formCriarConta.username(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for erro in formCriarConta.username.errors %}
+                                {{ erro }}
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ formCriarConta.username(class="form-control") }}
+                    {% endif %}
+
+                </div>
+
+                <div class="form-group">
+                    {{ formCriarConta.email.label(class="form-control-label") }}
+
+                    {% if formCriarConta.email.errors %}
+                        {{ formCriarConta.email(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for erro in formCriarConta.email.errors %}
+                                {{ erro }}
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ formCriarConta.email(class="form-control") }}
+                    {% endif %}
+
+                </div>
+
+                <div class="form-group">
+                    {{ formCriarConta.confirma_email.label(class="form-control-label") }}
+
+                    {% if formCriarConta.confirma_email.errors %}
+                        {{ formCriarConta.confirma_email(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for erro in formCriarConta.confirma_email.errors %}
+                                {{ erro }}
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ formCriarConta.confirma_email(class="form-control") }}
+                    {% endif %}
+
+                </div>
+
+                <div class="form-group">
+                    {{ formCriarConta.senha.label(class="form-control-label") }}
+
+                    {% if formCriarConta.senha.errors %}
+                    {{ formCriarConta.senha(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for erro in formCriarConta.senha.errors %}
+                                {{ erro }}
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ formCriarConta.senha(class="form-control") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ formCriarConta.confirma_senha.label(class="form-control-label") }}
+
+                    {% if formCriarConta.confirma_senha.errors %}
+                    {{ formCriarConta.confirma_senha(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for erro in formCriarConta.confirma_senha.errors %}
+                                {{ erro }}
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ formCriarConta.confirma_senha(class="form-control") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+                <div class="form-group centralizar mt-1">
+                    {{ formCriarConta.botao_criar_conta(class="btn btn-outline-primary") }}
+                </div>
+
+    </form>
+</div>
+{% endblock %}

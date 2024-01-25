@@ -1,0 +1,44 @@
+{% extends 'estrutura.html' %}
+
+{% block body %}
+<h1 class="centralizar mt-2">Faça login com seu acesso</h1>
+<hr>
+<div class="container centralizar">
+    <form method="POST" action="" class="border m-5 p-5 w-25 p-3 shadow p-3 mb-5 bg-body rounded" >
+        {{ formLogin.csrf_token }}
+        <legend class="centralizar">Login</legend>
+            <fieldset>
+                <div class="form-group">
+                    {{ formLogin.email.label(class="form-control-label") }}
+
+                    {% if formLogin.email.errors %}
+                        {{ formLogin.email(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for erro in formLogin.email.errors %}
+                                {{ erro }}
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ formLogin.email(class="form-control") }}
+                    {% endif %}
+
+                </div>
+
+                <div class="form-group">
+                    {{ formLogin.senha.label(class="form-control-label") }}
+                    {{ formLogin.senha(class="form-control") }}
+                </div>
+
+
+                <div class="form-group centralizar mt-2 mb-2">
+                        {{formLogin.lembrar_dados(class="form-check-input espacamento") }}
+                    {{formLogin.lembrar_dados.label(class="form-check-label") }}
+                </div>
+            </fieldset>
+                <div class="form-group centralizar mt-1">
+                    {{ formLogin.botao_submit_login(class="btn btn-outline-primary") }}
+                </div>
+
+    </form>
+</div>
+{% endblock %}

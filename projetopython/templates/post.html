@@ -1,0 +1,93 @@
+{% extends 'estrutura.html' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row border mt-4 p-3 stats">
+            <div class="col col-2">
+                <img src="{{ url_for('static', filename='imagens_perfil/{}'.format(post.autor.foto_perfil)) }}" class="rounded" width="200" >
+                <stron class="centralizar mt-1">{{ post.autor.username }}</stron>
+                <div class="row justify-content-center">
+                    {% for curso in post.autor.cursos.split(';') %}
+                        <button class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col col-10">
+                <small class="text-muted" style="font-size: 15px">Data da publicação: {{ post.data_criacao.strftime('%d/%m/%Y - %H:%M') }}</small>
+                    <div class="d-flex flex-row-reverse">
+                        {% if form %}
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#Editar_post"><button class="btn btn-danger ms-2" type="submit">Excluir</button></a>
+                            <a href="#form_editar_post"><button class="btn btn-info">Editar</button></a>
+                        {% endif %}
+                    </div>
+                <h3>{{ post.titulo }}</h3>
+                <p>{{ post.corpo }}</p>
+            </div>
+        </div>
+    </div>
+{% if form %}
+    <div class="container centralizar">
+        <form method="POST" action="" id="form_editar_post" class="border m-5 p-5 w-100 p-3 shadow p-3 mb-5 bg-body rounded" >
+            {{ form.csrf_token }}
+            <legend class="centralizar">Editar post</legend>
+                <fieldset>
+                    <div class="form-group">
+                        {{ form.titulo.label(class="form-control-label") }}
+
+                        {% if form.titulo.errors %}
+                            {{ form.titulo(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form.titulo.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.titulo(class="form-control") }}
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.corpo.label(class="form-control-label") }}
+
+                        {% if form.corpo.errors %}
+                            {{ form.corpo(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form.corpo.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.corpo(class="form-control") }}
+                        {% endif %}
+                    </div>
+                </fieldset>
+            <div class="form-group centralizar mt-2">
+                {{ form.botao_criar_post(class="btn btn-outline-primary") }}
+            </div>
+        </form>
+    </div>
+{% endif %}
+
+<!-- Modal -->
+<div class="modal fade" id="Editar_post" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmar para excluir</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          Essa ação não pode ser desfeita! <br>
+          Confirme a exclusão dos post
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <form method="POST" action="{{ url_for('excluir_post', post_id=post.id) }}">
+             <button type="submit" class="btn btn-danger">Excluir post</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.centralizar {
+    display: flex;
+    justify-content: center;
+    align-itens: center
+}
+
+.espacamento {
+    margin: 0 3px 0 3px;
+}
+
+/* Código css do card do perfil */
+
+.card{
+  width: 400px;
+  border: none;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.stats{
+  background: #f2f5f8 !important;
+  color: #000 !important;
+}
+
+.articles{
+  font-size:10px;
+  color: #a1aab9;
+}
+.number1{
+  font-weight:500;
+}
+
+.followers{
+  font-size:10px;
+  color: #a1aab9;
+}
+
+.number2{
+  font-weight:500;
+}
+
+.rating{
+  font-size:10px;
+  color: #a1aab9;
+}
+
+.number3{
+  font-weight:500;
+}
+
+/* Código para estilizar o título dos posts */
+.titulo_post {
+    color: black;
+}
+
+.titulo_post:hover {
+    color: orange;
+}

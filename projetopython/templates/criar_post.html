@@ -1,0 +1,45 @@
+{% extends 'estrutura.html' %}
+
+{% block body %}
+    <h1 class="centralizar mt-3">CRIAÇÃO DE POST</h1>
+    <div class="container centralizar">
+        <form method="POST" action="" class="border m-5 p-5 w-100 p-3 shadow p-3 mb-5 bg-body rounded" >
+            {{ formCriarPost.csrf_token }}
+            <legend class="centralizar">Crie seu post</legend>
+                <fieldset>
+                    <div class="form-group">
+                        {{ formCriarPost.titulo.label(class="form-control-label") }}
+    
+                        {% if formCriarPost.titulo.errors %}
+                            {{ formCriarPost.titulo(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in formCriarPost.titulo.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ formCriarPost.titulo(class="form-control") }}
+                        {% endif %}
+                    </div>
+    
+                    <div class="form-group">
+                        {{ formCriarPost.corpo.label(class="form-control-label") }}
+
+                        {% if formCriarPost.corpo.errors %}
+                            {{ formCriarPost.corpo(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in formCriarPost.corpo.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ formCriarPost.corpo(class="form-control") }}
+                        {% endif %}
+                    </div>
+                </fieldset>
+            <div class="form-group centralizar mt-2">
+                {{ formCriarPost.botao_criar_post(class="btn btn-outline-primary") }}
+            </div>
+        </form>
+    </div>
+{% endblock %}

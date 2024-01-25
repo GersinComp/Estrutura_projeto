@@ -1,0 +1,28 @@
+{% extends 'estrutura.html' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Criação do meu primeiro projeto em Python - Estrutura</h1>
+        <h2>Inicio do desenvolvimento back-and</h2>
+        <hr>
+        {% for post in posts %}
+            <div class="row border mt-4 p-3 stats">
+                <div class="col col-2">
+                    <img src="{{ url_for('static', filename='imagens_perfil/{}'.format(post.autor.foto_perfil)) }}" class="rounded" width="200" >
+                    <stron class="centralizar mt-1">{{ post.autor.username }}</stron>
+                    <div class="row justify-content-center">
+                        {% for curso in post.autor.cursos.split(';') %}
+                            <button class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col col-10">
+                    <small class="text-muted" style="font-size: 15px">Data da publicação: {{ post.data_criacao.strftime('%d/%m/%Y - %H:%M') }}</small>
+                    <a href="{{ url_for('exibir_post', post_id=post.id ) }}" style="text-decoration: none;"><h3 class="titulo_post">{{ post.titulo }}</h3></a>
+                    <p>{{ post.corpo }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+<span class="container"></span>
+{% endblock %}
